@@ -13,6 +13,7 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity {
 
     DispatchTouchEventListener dispatchTouchEventListener;
+    OnBackPressedListener onBackPressedListener;
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -28,8 +29,26 @@ public class MainActivity extends AppCompatActivity {
         this.dispatchTouchEventListener = dispatchTouchEventListener;
     }
 
+    public void setOnBackPressedListener(OnBackPressedListener onBackPressedListener){
+        this.onBackPressedListener = onBackPressedListener;
+    }
+
     public interface DispatchTouchEventListener{
         boolean dispatchTouchEvent(MotionEvent ev);
+    }
+
+    public interface OnBackPressedListener{
+        void onBackPressed();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (onBackPressedListener!=null){
+            onBackPressedListener.onBackPressed();
+        }else{
+            super.onBackPressed();
+        }
+
     }
 
     @Override

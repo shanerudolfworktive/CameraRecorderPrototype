@@ -280,6 +280,13 @@ public class SquareRecorderController extends BaseController implements View.OnC
             }
         });
 
+        mainActivity.setOnBackPressedListener(new MainActivity.OnBackPressedListener() {
+            @Override
+            public void onBackPressed() {
+                getActivity().finish();
+            }
+        });
+
         PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, CLASS_LABEL);
         mWakeLock.acquire();
@@ -349,6 +356,7 @@ public class SquareRecorderController extends BaseController implements View.OnC
             mWakeLock = null;
         }
         ((MainActivity)getActivity()).setOnDispatchTouchEventListener(null);
+        ((MainActivity)getActivity()).setOnBackPressedListener(null);
     }
     private void initLayout()
     {
@@ -528,6 +536,7 @@ public class SquareRecorderController extends BaseController implements View.OnC
             lp.gravity = Gravity.CENTER;
             dialogWindow.setAttributes(lp);
             creatingProgress.setCanceledOnTouchOutside(false);
+            creatingProgress.setCancelable(false);
             creatingProgress.setContentView(R.layout.activity_recorder_progress);
 
             progress = (TextView) creatingProgress.findViewById(R.id.recorder_progress_progresstext);
