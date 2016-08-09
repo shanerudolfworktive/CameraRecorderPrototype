@@ -280,13 +280,6 @@ public class SquareRecorderController extends BaseController implements View.OnC
             }
         });
 
-        mainActivity.setOnBackPressedListener(new MainActivity.OnBackPressedListener() {
-            @Override
-            public void onBackPressed() {
-                getActivity().finish();
-            }
-        });
-
         PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, CLASS_LABEL);
         mWakeLock.acquire();
@@ -356,7 +349,6 @@ public class SquareRecorderController extends BaseController implements View.OnC
             mWakeLock = null;
         }
         ((MainActivity)getActivity()).setOnDispatchTouchEventListener(null);
-        ((MainActivity)getActivity()).setOnBackPressedListener(null);
     }
     private void initLayout()
     {
