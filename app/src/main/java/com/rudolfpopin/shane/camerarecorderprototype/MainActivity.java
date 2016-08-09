@@ -5,11 +5,32 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+
+    DispatchTouchEventListener dispatchTouchEventListener;
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (dispatchTouchEventListener != null) {
+            boolean result = dispatchTouchEventListener.dispatchTouchEvent(ev);
+            if (result == true) return super.dispatchTouchEvent(ev);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+
+    public void setOnDispatchTouchEventListener(DispatchTouchEventListener dispatchTouchEventListener){
+        this.dispatchTouchEventListener = dispatchTouchEventListener;
+    }
+
+    public interface DispatchTouchEventListener{
+        boolean dispatchTouchEvent(MotionEvent ev);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

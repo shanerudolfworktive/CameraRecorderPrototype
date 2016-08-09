@@ -2,4 +2,14 @@
     <string name="app_name">CameraRecorderPrototype</string>
     <string name="action_settings">Settings</string>
     <string name="startRecording">Start Recording</string>
+    <string name="processing">processing...</string>
+    <string name="cancel">cancel</string>
+    <string name="video">video</string>
+    <string name="showPreview">show preview</string>
+    <string name="takePhoto">take photo</string>
+    <string name="pressToRecord">press to start recording</string>
+    <string name="releaseToStopRecording">release to stop recording</string>
+    <string name="changeViewToContinueRecording">change view to continue recording</string>
+    <string name="finishRecording">finish recording, you can view the preview</string>
+    <string name="restartRecording">restart recording</string>
 </resources>

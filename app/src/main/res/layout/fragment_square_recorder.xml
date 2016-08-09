@@ -1,18 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:background="@android:color/black" >
 
-    <TextureView
-        android:id="@+id/textureViewSquareRecorder"
-        android:layout_width="300dp"
-        android:layout_height="300dp" />
+    <LinearLayout
+        android:id="@+id/recorder_flashlight_parent"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#222222"
+        android:gravity="center_vertical">
 
-    <Button
-        android:layout_width="wrap_content"
+
+        <ImageButton
+            android:id="@+id/recorder_flashlight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/btn_recorder_flashlight"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/recorder_frontcamera"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/btn_recorder_frontcamera"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <com.rudolfpopin.shane.camerarecorderprototype.libs.squareRecorderLib.ProgressView
+        android:id="@+id/recorder_progress"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_below="@id/recorder_flashlight_parent" />
+
+    <RelativeLayout
+        android:id="@+id/recorder_bottom"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/startRecording"/>
+        android:layout_alignParentBottom="true"
+        android:background="#222222"
+        android:paddingBottom="20dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="20dp" >
 
-</LinearLayout>
+        <Button
+            android:id="@+id/recorder_cancel"
+            android:layout_width="66dp"
+            android:layout_height="36dp"
+            android:background="@drawable/btn_recorder_cancel"
+            android:text="@string/cancel"
+            android:visibility="invisible"
+            android:textColor="#bbbbbb"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/recorder_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_toRightOf="@id/recorder_cancel"
+            android:background="@android:color/transparent"
+            android:drawablePadding="10dp"
+            android:drawableTop="@drawable/btn_recorder_video"
+            android:text="@string/video"
+            android:textColor="@drawable/btn_recorder_video_text"
+            android:textSize="12dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/recorder_next"
+            android:layout_width="66dp"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/btn_recorder_next"
+            android:enabled="false"
+            android:text="@string/showPreview"
+            android:textColor="#444444"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/recorder_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="40dp"
+            android:layout_toLeftOf="@id/recorder_next"
+            android:background="@android:color/transparent"
+            android:drawablePadding="10dp"
+            android:drawableTop="@drawable/btn_recorder_picture"
+            android:text="@string/takePhoto"
+            android:textColor="@drawable/btn_recorder_video_text"
+            android:textSize="12dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/recorder_surface_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/recorder_bottom"
+        android:layout_below="@id/recorder_progress" >
+
+        <SurfaceView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/recorder_surface_state"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_below="@id/recorder_progress"
+        android:background="#7f000000"
+        android:clickable="false"
+        android:focusable="false"
+        android:text="@string/pressToRecord"
+        android:textColor="@color/colorWhite"
+        android:gravity="center"
+        android:scaleType="center" />
+
+</RelativeLayout>
